@@ -10,6 +10,9 @@ export default {
         white: '#F3EBEB',
         black: '#1D1717',
         main:'#014907'
+      },
+      fontFamily: {
+        secondary:'"Playfair Display", serif;'
       }
     },
   },

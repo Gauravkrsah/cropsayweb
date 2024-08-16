@@ -6,10 +6,14 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className='bg-black h-[100vh]'>
-       <h1 className="text-sm font-bold underline bg-white">
-      Hello world!
-    </h1>
+    <div className=' min-h-[100vh] bg-white flex justify-center items-center flex-col' >
+  
+  <button class='fill-effect my-6 px-6 py-3 text-white rounded-2xl' >
+  <span>BUY NOW</span>
+</button>
+<button class='fill-effect my-6 px-6 py-3 text-white bg-main rounded-2xl'>
+  <span>BUY NOW</span>
+</button>
     </div>
   )
 }
