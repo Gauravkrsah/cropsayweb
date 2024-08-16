@@ -13,7 +13,11 @@ export default {
       },
       fontFamily: {
         secondary:'"Playfair Display", serif;'
-      }
+      },
+      keyframes: {
+        
+      },
+      
     },
   },
   plugins: [],
