@@ -38,11 +38,11 @@ const Navbar = () => {
         .fromTo(
           suggestionRef.current[index],
           { y: "100%", opacity: 0 },
-          { y: "0%", opacity: 1, duration: 1 }
+          { y: "0%", opacity: 1, duration: 0.7 }
         )
         .to(
           suggestionRef.current[index],
-          { y: "-100%", opacity: 0, duration: 1 },
+          { y: "-100%", opacity: 0, duration: 0.7 },
           "+=1"
         );
     });
@@ -53,14 +53,15 @@ const Navbar = () => {
   }, [suggestions]);
 
   return (
-    <header className="fixed w-full ">
+    <header className=" w-full sticky top-0 bg-[#ffffff] z-10 ">
+  
       {/* show for mobile size */}
       <div className="px-6 md:hidden my-3 flex items-center justify-between">
         <img src={cropsay} alt="logo" width={100} />
         <FaRegUser className="text-black text-2xl" />
       </div>
       {/* end here  */}
-      <nav className="w-full flex screen-max-width justify-between h-[90px] items-center border-b border-gray-300 px-6">
+      <nav className=" w-full flex screen-max-width justify-between h-[90px] items-center border-b border-gray-300 px-6">
         <div className="flex items-center">
           <img
             src={cropsay}
@@ -79,14 +80,14 @@ const Navbar = () => {
         {/* search bar  */}
         <form
           ref={searchBoxRef}  
-          className={`relative md:w-2/5 w-full bg-slate-100 h-[50%] rounded-md flex items-center px-4 transition-all duration-300 
+          className={`relative md:w-2/5 w-full bg-[#ffffff] h-[50%] rounded-md flex items-center px-4 transition-all duration-300 border border-slate-300
              ${isExpanded ? "lg:md:w-3/5" : "md:w-2/5"}`}
           onClick={() => setIsExpanded(true)}
         >
-          <IoSearchSharp className="bg-slate-100 text-xl cursor-pointer" />
+          <IoSearchSharp className=" text-xl cursor-pointer" />
           <input
             type="text"
-            className="w-full h-full bg-slate-100 px-6 focus:outline-none text-sm"
+            className="w-full h-full  px-6 focus:outline-none text-sm bg- "
             placeholder="Search for seed plant and more"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
@@ -103,12 +104,12 @@ const Navbar = () => {
           )}
 
           {!isFocused && inputValue === "" && (
-            <div className="absolute left-10  h-full overflow-hidden flex items-center pointer-events-none border bg-slate-100 rounded-md border-none">
+            <div className="absolute left-10 w-4/5 h-full overflow-hidden flex items-center pointer-events-none border bg-[#ffffff] rounded-md border-none ">
               {suggestions.map((suggestion, index) => (
                 <span
                   key={index}
                   ref={(el) => (suggestionRef.current[index] = el)}
-                  className="absolute left-4 text-gray-500 w-full bg-slate-100 text-sm"
+                  className="absolute left-4 text-gray-500 w-full text-sm"
                 >
                   Search "{suggestion}"
                 </span>
