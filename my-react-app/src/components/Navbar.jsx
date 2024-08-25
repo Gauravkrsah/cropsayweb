@@ -8,7 +8,7 @@ import { RxCross2 } from "react-icons/rx";
 import { IoLocationSharp } from "react-icons/io5";
 
 const Navbar = () => {
-  const suggestions = ["Apple", "Mango", "Banana", "Orange", "Pineapple"];
+  const suggestions = ["Seeds", "Flowers", "Fertilizer", "Fruits", "Pineapple"];
   const suggestionRef = useRef([]);
   const searchBoxRef = useRef(null); 
   const [inputValue, setInputValue] = useState("");
