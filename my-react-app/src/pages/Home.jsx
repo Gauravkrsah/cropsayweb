@@ -42,9 +42,9 @@ const Home = () => {
       {/* categories  */}
 
       <div>
-        <h1 className="text-xl my-3 ">CATEGORIES</h1>
+        <h1 className="text-xl my-3 font-bold ">CATEGORIES</h1>
       </div>
-      <div className="w-full flex flex-wrap gap-8 justify-evenly">
+      <div className="w-full flex  flex-wrap overflow-x-scroll  justify-start my-10 sm:gap-8 gap-2">
                    
         
         {
@@ -61,14 +61,14 @@ const Home = () => {
 
       {/* featured product section  */}
       <div className="flex my-6 justify-between ">
-        <h1 className="text-xl ">BEST SELLER</h1>
+        <h1 className="text-xl font-bold ">BEST SELLER</h1>
         <NavLink to="" className="text-main">
           View all
         </NavLink>
       </div>
 
 
-      <div className=" flex  overflow-x-scroll  mx-0    lg:grid-cols-6   gap-8  justify-evenly ">
+      <div className=" flex  overflow-x-scroll  mx-0    lg:grid-cols-6   gap-8  ">
         {products.map((product, index) => (
           <ProductCard key={index} product={product} />
         ))}

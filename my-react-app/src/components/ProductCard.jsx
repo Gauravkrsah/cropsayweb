@@ -16,7 +16,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <>
-      <div className="flex flex-col border border-slate-200 rounded-lg relative p-3 justify-between  min-w-56 shadow-sm">
+      <div className="flex flex-col border border-slate-200 rounded-lg relative p-3 justify-between  min-w-56 shadow-sm   ">
         {/* discount and wishlist */}
 
         <div className="flex  justify-between mb-6 ">
@@ -34,14 +34,14 @@ const ProductCard = ({ product }) => {
 
         {/* end here  */}
         <div
-          className="flex justify-center mb-4  "
+          className="flex justify-center mb-4  cursor-pointer"
           onClick={() => handleProductDetails(product.id)}
         >
           <img src={product.img} alt="" width={100} />
         </div>
 
         <div className="flex flex-col ">
-          <p className="text-sm font-medium">{product.about}</p>
+          <p className="text-sm font-medium cursor-pointer" onClick={handleProductDetails}>{product.about}</p>
           <p className="text-xs text-slate-500">{product.brand}</p>
           {/* reviews  */}
           <div className="flex gap-3">

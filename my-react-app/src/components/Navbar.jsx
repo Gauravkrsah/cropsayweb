@@ -61,7 +61,7 @@ const Navbar = () => {
         <FaRegUser className="text-black text-2xl" />
       </div>
       {/* end here  */}
-      <nav className=" w-full flex screen-max-width justify-between h-[90px] items-center border-b border-gray-300 px-6">
+      <nav className=" w-full flex screen-max-width justify-between h-[90px] items-center border-b border-gray-300  px-6">
         <div className="flex items-center">
           <img
             src={cropsay}

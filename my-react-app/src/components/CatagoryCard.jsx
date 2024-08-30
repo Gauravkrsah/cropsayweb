@@ -32,14 +32,14 @@ const CatagoryCard = ({categoryItem}) => {
   }
   return (
     
-       <div className=" w-48 rounded-2xl my-7 relative max-h-18  p-2  border-main border-2 transition-all flex items-center cursor-pointer"
+       <div className=" min-w-48 max-w-48  rounded-2xl my-10 relative max-h-18 bg-  border-main border-2 transition-all flex items-center cursor-pointer mx-auto "
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
           <img
             src={categoryItem.img}
               alt=""
-            className="opacity-40 hover:opacity-100 object-center"
+            className="opacity-40 hover:opacity-100 object-center rounded-xl"
           />
           <p ref={textRef } className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]  text-2xl font-semibold text-main ">
             {categoryItem.title.toUpperCase()}
