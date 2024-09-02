@@ -17,9 +17,7 @@ const Details = () => {
   const [fromPrice, setFromPrice] = useState(0);
   const [toPrice, setToPrice] = useState(2000);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+
 
 
   console.log(fromPrice);

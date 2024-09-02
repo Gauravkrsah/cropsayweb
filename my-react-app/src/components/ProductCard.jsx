@@ -1,23 +1,26 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import { CiHeart } from "react-icons/ci";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoMdHeart } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-
+import { redirect } from "react-router-dom";
+import { scrollTop } from "../main";
 
 const ProductCard = ({ product }) => {
   const [liked, setLiked] = useState(false);
   const [showQuantityOpt, setShowQuantityOpt] = useState(false);
-  const navigate=useNavigate()
+  const { showScrollTop, setShowScrollTop } = useContext(scrollTop);
+  const navigate = useNavigate();
 
   const handleProductDetails = (productId) => {
-    navigate(`/product/detail/${productId}`)
-   
+    setShowScrollTop((prev) => !prev);
+    navigate(`/product/detail/${productId}`);
   };
 
   return (
     <>
-      <div className="flex flex-col border border-slate-200 rounded-lg relative p-3 justify-between  min-w-56 shadow-sm   ">
+      <div className="flex flex-col border border-slate-200 rounded-lg relative p-3 justify-between  min-w-56  shadow-sm   ">
         {/* discount and wishlist */}
 
         <div className="flex  justify-between mb-6 ">
@@ -42,7 +45,12 @@ const ProductCard = ({ product }) => {
         </div>
 
         <div className="flex flex-col ">
-          <p className="text-sm font-medium cursor-pointer"  onClick={() => handleProductDetails(product.id)}>{product.about}</p>
+          <p
+            className="text-sm font-medium cursor-pointer"
+            onClick={() => handleProductDetails(product.id)}
+          >
+            {product.about}
+          </p>
           <p className="text-xs text-slate-500">{product.brand}</p>
           {/* reviews  */}
           <div className="flex gap-3">

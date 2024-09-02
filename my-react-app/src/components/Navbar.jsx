@@ -55,7 +55,7 @@ const Navbar = () => {
   }, [suggestions]);
 
   return (
-    <header className=" w-full sticky top-0 bg-[#ffffff] z-10 ">
+    <header className=" w-full sticky top-0 bg-[#ffffff] z-50 ">
   
       {/* show for mobile size */}
       <div className="px-6 md:hidden my-3 flex items-center justify-between">
