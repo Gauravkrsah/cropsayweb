@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { LuListFilter } from "react-icons/lu";
@@ -14,32 +14,27 @@ const Details = () => {
   const navigate = useNavigate();
 
   const datas = ["seed", "fertilizer", "plant", "honey", "tools", "honey"];
+  const [fromPrice, setFromPrice] = useState(0);
+  const [toPrice, setToPrice] = useState(2000);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+
+  console.log(fromPrice);
+
   return (
     <div className="mx-10 lg:mx-32">
       {/* Heading */}
       <div className="py-5 flex flex-col gap-9">
-        <div className="flex justify-start gap-4 items-center">
-          <FaArrowLeft
-            className="cursor-pointer"
-            onClick={() => navigate("/")}
-          />
-          <p>Back to home page</p>
-        </div>
-        <div>
-          <h1 className="text-2xl font-semibold my-3">
-            10 results for agriculture
-          </h1>
-        </div>
-        <div className="flex gap-10 my-5">
+      
+       
+        <div className="flex gap-10 my-4">
           {datas.map((data, index) => (
             <div
               key={index}
-              className="bg-slate-50 flex px-14 rounded-2xl py-3 mx-auto shadow-xl"
+              className="bg-slate-50 flex px-14 rounded-2xl py-3 mx-auto shadow-md"
             >
               {data}
             </div>
@@ -70,7 +65,7 @@ const Details = () => {
             Availability
           </div>
         </div>
-        <div className="mx-10">
+        <div className="ml-10">
           <Select className="w-60" placeholder="Sort by: Most popular">
             <Select.Option value="most popular">Most Popular</Select.Option>
             <Select.Option value="newest">Newest</Select.Option>
@@ -82,13 +77,13 @@ const Details = () => {
       {/* hero */}
       <div className=" w-full flex my-10 gap-8 ">
         {/* aside */}
-        <div className="border b-slate-300 p-6 flex flex-col w-1/2 top-[500px] rounded-lg shadow-2xl h-fit sticky top-44">
+        <div className="border b-slate-300 p-6 flex flex-col w-1/2  rounded-lg shadow-2xl h-fit sticky top-44">
           <p className="text-lg font-semibold">Price range</p>
-          <div className="flex justify-evenly gap-6 my-5">
-            <div className="bg-white px-12 py-2 rounded-lg">$2.40</div>
-            <div className="bg-white px-12 py-2 rounded-lg">$2.40</div>
+          <div className="flex justify-evenly gap-5 my-5">
+            <input type="number" className="bg-white text-center py-2 rounded-lg w-36" placeholder="From" value={fromPrice} onChange={(e)=>setFromPrice(e.target.value)} />
+           <input type="number"  className="bg-white text-center  py-2 rounded-lg w-36" placeholder="To"  value={toPrice} onChange={(e)=>setToPrice(e.target.value)}/>
           </div>
-          <input type="range" />
+          <input type="range"  />
 
           <div className="my-4 flex flex-col justify-start">
             <p className="my-3">Brand</p>
@@ -147,7 +142,7 @@ const Details = () => {
 
         <div className="flex flex-wrap justify-start gap-11">
           {products.map((product, index) => (
-            <ProductCard product={product} />
+            <ProductCard product={product} key={index} />
           ))}
         </div>
 

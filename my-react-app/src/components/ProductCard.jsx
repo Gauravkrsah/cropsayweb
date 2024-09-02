@@ -4,13 +4,14 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoMdHeart } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
+
 const ProductCard = ({ product }) => {
   const [liked, setLiked] = useState(false);
   const [showQuantityOpt, setShowQuantityOpt] = useState(false);
   const navigate=useNavigate()
 
   const handleProductDetails = (productId) => {
-    navigate(`/product/${productId}`)
+    navigate(`/product/detail/${productId}`)
    
   };
 
@@ -41,7 +42,7 @@ const ProductCard = ({ product }) => {
         </div>
 
         <div className="flex flex-col ">
-          <p className="text-sm font-medium cursor-pointer" onClick={handleProductDetails}>{product.about}</p>
+          <p className="text-sm font-medium cursor-pointer"  onClick={() => handleProductDetails(product.id)}>{product.about}</p>
           <p className="text-xs text-slate-500">{product.brand}</p>
           {/* reviews  */}
           <div className="flex gap-3">

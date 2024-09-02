@@ -4,6 +4,7 @@ import { BrowserRouter as Router,Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Details from './pages/Details';
+import ProductDetail from './pages/ProductDetail';
 
 
 
@@ -16,7 +17,8 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path='' element={<Home />} />
-        <Route path='/product/:productDetails' element={<Details />} />
+        <Route path='/product/category/:name' element={<Details />} />
+        <Route path='/product/detail/:id' element={<ProductDetail/>}/>
         
         
       </Routes>

@@ -9,6 +9,11 @@
 }
 
 
+.slider-with-gap .slick-slide {
+  padding: 0 10px;
+}
+
+
 
 
 

@@ -6,6 +6,7 @@ import { FaRegUser } from "react-icons/fa";
 import { IoCart } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { IoLocationSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const suggestions = ["Seeds", "Flowers", "Fertilizer", "Fruits", "Pineapple"];
@@ -15,6 +16,7 @@ const Navbar = () => {
   const [cartItem, setCartItem] = useState(0);
   const [isFocused, setIsFocused] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -68,7 +70,8 @@ const Navbar = () => {
             height={100}
             width={120}
             alt="logo"
-            className="hidden md:block "
+            className="hidden md:block  cursor-pointer"
+            onClick={()=>navigate('/')}
           />
         </div>
 
