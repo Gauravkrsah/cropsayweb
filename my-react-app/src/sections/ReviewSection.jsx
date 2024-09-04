@@ -2,6 +2,7 @@ import React from "react";
 import StarDisplay from "../components/RatingDisplay";
 import { Flex, Progress } from "antd";
 import CustomerReview from "../components/CustomerReview";
+import {  Tooltip } from 'antd';
 
 const ReviewSection = () => {
   return (
@@ -18,6 +19,8 @@ const ReviewSection = () => {
           </div>
           <p>51 reviews</p>
 
+          <div className="relative flex  md:justify-between items-center">
+
           <div className="my-20">
             <Flex
               vertical
@@ -28,27 +31,45 @@ const ReviewSection = () => {
             >
               <div className="flex  ">
                 <p className="text-xs text-nowrap mr-6">5 star</p>{" "}
-                <Progress percent={30} size="small" status="active" />
+                <Progress percent={50} size="small" status="active" />
               </div>
               <div className="flex  ">
                 <p className="text-xs text-nowrap mr-6">4 star</p>{" "}
-                <Progress percent={30} size="small" status="active" />
+                <Progress percent={20} size="small" status="active" />
               </div>
               <div className="flex  ">
                 <p className="text-xs text-nowrap mr-6">3 star</p>{" "}
-                <Progress percent={30} size="small" status="active" />
+                <Progress percent={20} size="small" status="active" />
               </div>
               <div className="flex  ">
                 <p className="text-xs text-nowrap mr-6">2 star</p>{" "}
-                <Progress percent={30} size="small" status="active" />
+                <Progress percent={10} size="small" status="active" />
               </div>
               <div className="flex  ">
                 <p className="text-xs text-nowrap mr-6">1 star</p>{" "}
-                <Progress percent={30} size="small" status="active" />
+                <Progress percent={10} size="small" status="active" />
               </div>
              
             </Flex>
           </div>
+          <div className=" hidden sm:hidden lg:block mr-40  ">
+              <Flex gap="150px" >
+                <div className="flex flex-col">
+                  <Progress type="dashboard" percent={75} gapDegree={25} />
+                  <p className="my-5">Positive Review</p>
+                </div>
+                
+                <div className="flex flex-col">
+                  <Progress type="dashboard" percent={25} gapDegree={30} trailColor="red" />
+                  <p className="my-5 text-nowrap">Negative Review</p>
+                  </div>
+                
+  </Flex>
+          </div>
+
+          </div>
+
+          
         </aside>
         {/* end aside  */}
      
