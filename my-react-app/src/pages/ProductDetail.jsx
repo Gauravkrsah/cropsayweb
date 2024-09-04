@@ -268,23 +268,6 @@ const ProductDetail = () => {
         optio? Beatae error saepe voluptates modi aliquam itaque, explicabo
         blanditiis recusandae tenetur excepturi ipsum eligendi, nobis officia
         nihil dolorem. Deleniti error quibusdam officia nam at ab doloremque,
-        quam sapiente maxime provident! Ratione quas culpa iusto, minima labore
-        ipsam rem et, eaque necessitatibus cupiditate sed modi eveniet optio
-        facere illo? Hic, reprehenderit. Nobis accusamus incidunt porro error
-        totam fugit possimus ab obcaecati? At perspiciatis delectus tenetur
-        corrupti officia suscipit consequuntur vero voluptate molestiae animi
-        aut, quidem possimus! Aut, quo aperiam! Dolore odit, delectus
-        dignissimos fuga vero accusamus id velit dolores et ducimus. Ullam,
-        consequuntur at? Quia alias, ea corporis perferendis id molestiae autem
-        nemo molestias at tenetur cupiditate corrupti sequi ipsam soluta,
-        nostrum tempore itaque commodi consequatur officia nesciunt odit
-        eligendi non. Inventore sed culpa consectetur. Reprehenderit ex dolor
-        possimus, laboriosam esse quae suscipit recusandae veniam unde pariatur,
-        nobis sequi. Dolorem saepe enim repellendus blanditiis commodi quo rem
-        eveniet autem! At, maxime. Obcaecati, nulla laborum quam fugiat
-        architecto sit accusantium dolor officia optio exercitationem. Veritatis
-        ea aspernatur totam quis impedit pariatur quos voluptates nulla
-        doloremque? Nulla totam quis dolore, ducimus itaque laborum.
       </p>
 
       {/*end product details text detail  */}

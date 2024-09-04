@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { cropsay} from "../utils/utils";
+import { cropsay } from "../utils/utils";
 import { IoSearchSharp } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import { IoCart } from "react-icons/io5";
@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const suggestions = ["Seeds", "Flowers", "Fertilizer", "Fruits", "Pineapple"];
   const suggestionRef = useRef([]);
-  const searchBoxRef = useRef(null); 
+  const searchBoxRef = useRef(null);
   const [inputValue, setInputValue] = useState("");
   const [cartItem, setCartItem] = useState(0);
   const [isFocused, setIsFocused] = useState(false);
@@ -20,7 +20,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (searchBoxRef.current && !searchBoxRef.current.contains(event.target)) {
+      if (
+        searchBoxRef.current &&
+        !searchBoxRef.current.contains(event.target)
+      ) {
         setIsExpanded(false);
       }
     };
@@ -40,12 +43,12 @@ const Navbar = () => {
         .fromTo(
           suggestionRef.current[index],
           { y: "100%", opacity: 0 },
-          { y: "0%", opacity: 1, duration: 0.7 }
+          { y: "0%", opacity: 1, duration: 0.7 },
         )
         .to(
           suggestionRef.current[index],
           { y: "-100%", opacity: 0, duration: 0.7 },
-          "+=1"
+          "+=1",
         );
     });
 
@@ -56,7 +59,6 @@ const Navbar = () => {
 
   return (
     <header className=" w-full sticky top-0 bg-[#ffffff] z-50 ">
-  
       {/* show for mobile size */}
       <div className="px-6 md:hidden my-3 flex items-center justify-between">
         <img src={cropsay} alt="logo" width={100} />
@@ -71,18 +73,20 @@ const Navbar = () => {
             width={120}
             alt="logo"
             className="hidden md:block  cursor-pointer"
-            onClick={()=>navigate('/')}
+            onClick={() => navigate("/")}
           />
         </div>
 
-        <a className={` hidden ${isExpanded ? "hidden" : "lg:flex block items-center gap-2"} `}>
+        <a
+          className={` hidden ${isExpanded ? "hidden" : "lg:flex block items-center gap-2"} `}
+        >
           <IoLocationSharp />
           Detect location
         </a>
 
         {/* search bar  */}
         <form
-          ref={searchBoxRef}  
+          ref={searchBoxRef}
           className={`relative md:w-2/5 w-full bg-[#ffffff] h-[50%] rounded-md flex items-center px-4 transition-all duration-300 border border-slate-300
              ${isExpanded ? "lg:md:w-3/5" : "md:w-2/5"}`}
           onClick={() => setIsExpanded(true)}
@@ -126,12 +130,14 @@ const Navbar = () => {
           <button className="px-6 py-3 rounded-md text-sm md:text-md">
             Log In
           </button>
-          <button className="bg-main px-6 py-3 rounded-md text-white flex items-center gap-3 text-sm md:text-md">
+          <button className="bg-main px-6 py-3 rounded-md text-white flex items-center gap-3 text-sm md:text-md  relative">
             <IoCart className="bg-main text-2xl" />
             {cartItem === 0 ? (
               <p className="bg-main">My Cart</p>
             ) : (
-              <span className="text-white bg-main">5 items</span>
+              <p className="absolute top-1 right-2 bg-[#ffffff] rounded-[50%] text-black p-[1px] px-[2px]">
+                20
+              </p>
             )}
           </button>
         </div>

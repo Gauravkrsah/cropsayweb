@@ -44,7 +44,7 @@ const Home = () => {
       <div>
         <h1 className="text-xl my-3 font-bold ">CATEGORIES</h1>
       </div>
-      <div className="w-full flex  flex-wrap overflow-x-scroll  justify-start my-10 sm:gap-8 gap-2">
+      <div className="w-full sm:flex sm:flex-wrap my-10 sm:gap-8 gap-2 grid grid-cols-4 place-items-center">
                    
         
         {
