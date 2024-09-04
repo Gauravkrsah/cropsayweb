@@ -5,7 +5,7 @@ import CustomerReview from "../components/CustomerReview";
 
 const ReviewSection = () => {
   return (
-    <div className=" my-50 py-20 ">
+    <div className=" my-0 py-20 ">
       <div className="flex flex-wrap md:justify-start gap-20 items-start">
 
         {/* aside  */}
