@@ -21,14 +21,14 @@ export const products = [
   {
     id: 2,
     img: img2,
-    about: "No Virus(BIO VIRCIDE",
+    about: "No Virus(BIO VIRCIDE ",
     brand: "Geolife Agritech",
     price: 285,
     size: ["250ml", "500ml"],
   },
   {
     id: 3,
-    img: img3,
+    img: honey,
     about: "No Virus(BIO VIRCIDE",
     brand: "Geolife Agritech",
     price: 285,

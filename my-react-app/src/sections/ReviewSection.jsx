@@ -9,7 +9,7 @@ const ReviewSection = () => {
       <div className="flex flex-wrap md:justify-start gap-20 items-start">
 
         {/* aside  */}
-        <aside className="flex flex-col bg-white py-5 px-6 rounded-lg h-[50vh] w-full">
+        <aside className="flex flex-col bg-white py-5 px-6 rounded-lg md:h-[50vh] w-full">
           <h3 className="text-xl font-semibold mb-4">Customer Reviews</h3>
           <hr className="border-black" />
           <div className="flex gap-3">

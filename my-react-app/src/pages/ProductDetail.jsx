@@ -69,7 +69,7 @@ const ProductDetail = () => {
 
     if (width < 1000) {
       gsap.to(container, {
-        scrollLeft: container.scrollLeft + 300, // Adjust scroll distance
+        scrollLeft: container.scrollLeft + 170, // Adjust scroll distance
         duration: 0,
         ease: "power2.out",
       });
@@ -86,7 +86,7 @@ const ProductDetail = () => {
     let width = window.innerWidth;
     if (width < 1000) {
       gsap.to(container, {
-        scrollLeft: container.scrollLeft - 300, // Adjust scroll distance
+        scrollLeft: container.scrollLeft - 170, // Adjust scroll distance
         duration: 0,
         ease: "power2.out",
       });
@@ -314,7 +314,7 @@ const ProductDetail = () => {
         {/* Product Container */}
         <div
           ref={productContainerRef[0]}
-          className="flex px-4 py-3 overflow-x-scroll gap-20 mx-6"
+          className="flex px-4 py-3 overflow-x-scroll gap-5 md:gap-20 mx-6"
         >
           {products.map((product, index) => (
             <ProductCard key={index} product={product} />
@@ -355,7 +355,7 @@ const ProductDetail = () => {
         {/* Product Container */}
         <div
           ref={productContainerRef[1]}
-          className="flex px-4 py-3 overflow-x-scroll gap-20 mx-6"
+          className="flex px-4 py-3 overflow-x-scroll gap-5 md:gap-20 mx-6"
         >
           {products.map((product, index) => (
             <ProductCard key={index} product={product} />

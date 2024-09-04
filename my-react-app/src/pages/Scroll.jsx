@@ -5,11 +5,13 @@ import { scrollTop } from "../main";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  const { showScrollTop, setShowScrollTop } = useContext(scrollTop);
+  const { showScrollTop } = useContext(scrollTop);
+
   useEffect(() => {
-    // Instantly jump to the top
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, [showScrollTop, pathname]);
+    if (showScrollTop || pathname !== '/') {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+  }, [pathname, showScrollTop]);
 
   return null;
 };

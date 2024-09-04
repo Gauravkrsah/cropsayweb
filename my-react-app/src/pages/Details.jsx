@@ -23,18 +23,18 @@ const Details = () => {
   console.log(fromPrice);
 
   return (
-    <div className="mx-10 lg:mx-32">
+    <div className="mx-7 md:mx-32">
       {/* Heading */}
-      <div className="py-5 flex flex-col gap-9">
+      <div className="py-5 flex  flex-col gap-9 overflow-x-scroll">
       
        
-        <div className="flex gap-10 my-4">
+        <div className="md:flex grid grid-cols-4 gap-3 md:gap-10 my-4 md:justify-between ">
           {datas.map((data, index) => (
             <div
               key={index}
-              className="bg-slate-50 flex px-14 rounded-2xl py-3 mx-auto shadow-md"
+              className="bg-slate-50 flex  px-3 md:px-14 rounded-2xl py-2  shadow-md"
             >
-              {data}
+              <p className="text-xs md:text-base">{data}</p>
             </div>
           ))}
         </div>
@@ -44,27 +44,16 @@ const Details = () => {
       <hr className="border b-black my-5" />
 
       {/* filter */}
-      <div className="flex justify-between items-center sticky top-[90px] bg-[#ffffff] h-20 z-10">
+      <div className="flex flex-wrap justify-between items-center md:sticky md:top-[90px] sticky top-[135px] bg-[#ffffff] md:h-20 z-10 h-50 py-2 border-b-2 md:border-none">
         <div className="flex items-center gap-5">
-          <div className="bg-main text-white p-3 rounded-[50%]">
+          <div className="bg-main text-white md:p-3 rounded-[50%] p-1">
             <LuListFilter />
           </div>
-          <p>Filter by:</p>
-          <div className="bg-slate-100 px-5 py-2 rounded-2xl shadow-md">
-            Brand
-          </div>
-          <div className="bg-slate-100 px-5 py-2 rounded-2xl shadow-md">
-            Type
-          </div>
-          <div className="bg-slate-100 px-5 py-2 rounded-2xl shadow-md">
-            Price
-          </div>
-          <div className="bg-slate-100 px-5 py-2 rounded-2xl shadow-md">
-            Availability
-          </div>
+          <p className="md:text-lg  text-xs">Filter by:</p>
+          
         </div>
-        <div className="ml-10">
-          <Select className="w-60" placeholder="Sort by: Most popular">
+        <div className="md:ml-10 my-4 w-full md:w-fit">
+          <Select className="md:w-60 w-full" placeholder="Sort by: Most popular">
             <Select.Option value="most popular">Most Popular</Select.Option>
             <Select.Option value="newest">Newest</Select.Option>
           </Select>
@@ -75,7 +64,7 @@ const Details = () => {
       {/* hero */}
       <div className=" w-full flex my-10 gap-8 ">
         {/* aside */}
-        <div className="border b-slate-300 p-6 flex flex-col w-1/2  rounded-lg shadow-2xl h-fit sticky top-44">
+        <div className="border b-slate-300 p-6 flex flex-col w-1/2  rounded-lg shadow-2xl h-fit sticky top-44 hidden lg:block">
           <p className="text-lg font-semibold">Price range</p>
           <div className="flex justify-evenly gap-5 my-5">
             <input type="number" className="bg-white text-center py-2 rounded-lg w-36" placeholder="From" value={fromPrice} onChange={(e)=>setFromPrice(e.target.value)} />
@@ -138,7 +127,7 @@ const Details = () => {
 
         {/* components  */}
 
-        <div className="flex flex-wrap justify-start gap-11">
+        <div className="md:flex md:flex-wrap justify-start gap-2 md:gap-10 grid grid-cols-2 mx-auto ">
           {products.map((product, index) => (
             <ProductCard product={product} key={index} />
           ))}
