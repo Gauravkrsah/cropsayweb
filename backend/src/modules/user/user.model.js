@@ -46,10 +46,10 @@ const AddressSchema = new mongoose.Schema({
      forgetToken:String,
      forgetFor: Date,
      image: String,
-     createdBy:{
-         type: mongoose.Types.ObjectId,
-         ref: "User",
-         default:null
+     cart: [{type: mongoose.Schema.ObjectId, ref: "Product"}],
+     isBlocked: {
+        type: Boolean,
+        default: false
      }
  },{
      timestamps:true,  

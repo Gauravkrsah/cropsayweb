@@ -129,7 +129,7 @@ class AuthController {
 
     refreshToken = async(req, res, next) =>{
         try{
-            let token = req.headers['Authorization'] || null;
+            let token = req.headers['authorization'] || null;
         
             if(!token){
                 throw {status: 401, message: "Token required"}
@@ -164,6 +164,7 @@ class AuthController {
             next(exception)
         }
 }
+
 }
 
 module.exports = new AuthController()

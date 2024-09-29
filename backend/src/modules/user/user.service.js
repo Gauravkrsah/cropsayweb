@@ -78,6 +78,15 @@ generateUserActivationToken = (data) =>{
             throw exception
         }
     }
+
+    updateUser = async (data, id) =>{
+        try{
+            const response = await UserModel.findByIdAndUpdate(id, {$set: data}, {new:true})
+            return response;
+        }catch(exception){
+            throw exception
+        }
+    }
 }
 
 const userSvc = new UserService()

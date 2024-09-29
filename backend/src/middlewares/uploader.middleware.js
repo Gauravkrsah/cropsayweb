@@ -3,6 +3,7 @@ const fs = require ("fs");
 const { fileFilterType } = require("../config/constants.config");
 const randomStringGenerator = require("../utilities/random-string");
 
+const upload = multer();
 const myStorage = multer.diskStorage({
     destination: (req, file, cb) => {
         const path = "./public/uploads/"+ req.uploadPath
@@ -58,5 +59,6 @@ const deleteFile = (path) => {
 module.exports = {
     uploadfile,
     setPath,
-    deleteFile
+    deleteFile,
+    upload
 }

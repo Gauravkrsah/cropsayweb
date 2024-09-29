@@ -1,5 +1,7 @@
+const idvalidate = require("../../utilities/mongo_id_validator");
 const UserModel = require("./user.model");
 const { userSvc } = require("./user.service");
+const multer = require('multer');
 
 class UserController {
 
@@ -32,8 +34,11 @@ userLists = async (req, res,next)=>{
 }
 
 userdetailbyId = async (req,res, next)=>{
-    const {id} = req.params;
+    
    try {
+    
+    const {id} = req.params;
+    idvalidate(id)
     const details = await UserModel.findById(id)
     res.json({
         result: details,
@@ -46,23 +51,82 @@ userdetailbyId = async (req,res, next)=>{
 }
 
 
-userupdatebyId = (req,res, next)=>{
-const params = req.params;
-res.json({
-    result:"",
-    message:`user update of ${req.params.id}`,
-    meta : null
-})
-}
-userdeletebyId = (req,res, next)=>{
-const params = req.params;
-res.json({
-result:"",
-message:`user delete of ${req.params.id}`,
-meta : null
-})
+userupdatebyId =async (req,res, next)=>{
+try {
+    const {id} = req.params;
+    idvalidate(id)
+
+if (!req.body.name) {
+   throw({status:400, message: "request body is missing"});
 }
 
+const response = await userSvc.updateUser(req.body, id);
+
+        res.json({
+            result:response,
+            message:`user update of ${id}`,
+            meta : null
+        })
+}catch(exception){
+    next(exception)
+}
+}
+
+
+UserdeleteById = async(req, res, next) =>{
+    try{
+        const {id} = req.params;
+        idvalidate(id)
+        const response = await UserModel.findByIdAndDelete(id);
+        if(!response){
+            throw{status:404,message:"User not found"}
+
+        }
+        res.json({
+            result: response,
+            message: `User ${id} deleted successfully`,
+            meta : null
+        })
+
+    }catch(exception){
+        next(exception)
+}
+}
+
+BlocKUser = async(req, res, next) =>{
+    
+    try{
+        const {id} = req.params;
+    idvalidate(id)
+        const blockUser =await UserModel.findByIdAndUpdate(id,{
+            isBlocked: true
+        },
+        {new:true}
+    )
+
+        res.json({
+            message: "User Blocked"
+        })
+    }catch(exception){
+        next(exception)
+    }
+}
+UnblocKUser = async(req, res, next) =>{
+   
+    try{
+        const {id} = req.params;
+        idvalidate(id)
+        const blockUser = await UserModel.findByIdAndUpdate(id,{
+            isBlocked: false
+        })
+
+        res.json({
+            message: "User Unblocked"
+        })
+    }catch(exception){
+        next(exception) 
+    }
+}
 }
 
 const UserCtrl = new UserController()

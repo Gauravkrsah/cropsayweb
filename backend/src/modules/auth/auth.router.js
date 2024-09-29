@@ -10,5 +10,5 @@ const upload = multer()
 authRouter.get("/activate/:token",authController.activateUser)
 authRouter.get("/resend-activationToken/:token",authController.resendActivationToken)
 authRouter.post("/login", upload.none(),bodyValidator(LoginDTO) ,authController.login)
-
+authRouter.get("/refresh",authController.refreshToken)
 module.exports = authRouter
