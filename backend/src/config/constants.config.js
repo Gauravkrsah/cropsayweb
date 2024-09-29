@@ -7,6 +7,10 @@ const StatusType = {
     ACTIVE: "active",
     INACTIVE: "inactive"
 }
+const ProductStatus = {
+  AVAIL: "available",
+  UNAVAIL: "unavailable"
+}
 
 const fileFilterType = {
   IMAGE:"image",
@@ -18,5 +22,6 @@ const fileFilterType = {
 module.exports = {
     UserRoles,
     StatusType,
-    fileFilterType
+    fileFilterType,
+    ProductStatus
 }
