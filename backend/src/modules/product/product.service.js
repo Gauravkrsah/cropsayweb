@@ -23,10 +23,36 @@ productDetailById = async(id) => {
     }
 }
 
-AllProducts = async()=>{
+AllProductsFiltering = async(query)=>{
     try{
-        const allProducts = await ProductModel.find()
+        const queryObj = {...query};
+        const excludeFields = ['page', 'sort','limit','fields']
+        excludeFields.forEach((el) => delete queryObj[el])
+        let queryStr = JSON.stringify(queryObj)
+        queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g,(match) => `$${match}`)
+        const allProducts = await ProductModel.find(JSON.parse(queryStr))
         return allProducts
+    }catch(exception){
+        throw(exception)
+    }
+}
+
+ProductUpdateById  = async(id,data) => {
+    try{
+        if(data.title){
+            data.slug = slugify(data.title)
+        }
+        const productUpdate = await ProductModel.findByIdAndUpdate(id, {$set:data}, {new:true})
+        return productUpdate
+    }catch(exception){
+        throw(exception)
+    }
+}
+
+ProductDeleteById = async(id) => {
+    try{
+        const productDelete = await ProductModel.findByIdAndDelete(id)
+        return(productDelete)
     }catch(exception){
         throw(exception)
     }

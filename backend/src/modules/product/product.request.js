@@ -20,11 +20,11 @@ const ProductCreateDTO = joi.object({
 });
 
 const ProductUpdateDTO = joi.object({
-    title: joi.string().min(3).max(100).required(),
-    slug: joi.string().required(),
-    description: joi.string().required(),
-    quantity : joi.number().required(),
-    price: joi.number().required(),
+    title: joi.string().min(3).max(100),
+    slug: joi.string(),
+    description: joi.string(),
+    quantity : joi.number(),
+    price: joi.number(),
     category : joi.string(),
     brand: joi.string(),
     ratings: [{
@@ -32,7 +32,7 @@ const ProductUpdateDTO = joi.object({
         postedBy: joi.string()
     }
     ],
-    status: joi.string().valid(...Object.values(ProductStatus)).required(),
+    status: joi.string().valid(...Object.values(ProductStatus)),
     image: joi.array()
 });
 
