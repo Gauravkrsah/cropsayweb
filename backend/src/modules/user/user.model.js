@@ -50,7 +50,10 @@ const AddressSchema = new mongoose.Schema({
      isBlocked: {
         type: Boolean,
         default: false
-     }
+     },
+     passwordChangedAt:Date,
+     passwordResetToken:String,
+     passwordResetExpires:Date,
  },{
      timestamps:true,  
      autoIndex:true,

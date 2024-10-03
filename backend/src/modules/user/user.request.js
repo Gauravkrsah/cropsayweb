@@ -20,6 +20,16 @@ const userCreateDTO = Joi.object({
     })
 })
 
+PasswordUpdateDTO = Joi.object({
+    password : Joi.string().regex(/^(?=.*[\d])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,25}$/).required().messages({
+        "string.pattern.base" : "password must contain small letter, capital letter, number and special character"
+    }),
+    confirmPassword : Joi.string().equal(Joi.ref('password')).required().messages({
+        "any.only" : "password and confirm password should match"
+    }),
+})
+
 module.exports = {
-    userCreateDTO
+    userCreateDTO,
+    PasswordUpdateDTO
 }

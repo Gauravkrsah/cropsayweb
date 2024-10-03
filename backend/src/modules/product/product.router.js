@@ -10,7 +10,7 @@ const upload = multer()
 productRouter.post('/createProduct',loginCheck, hasPermission('admin'), upload.none(), bodyValidator(ProductCreateDTO), ProductCtrl.CreateProduct)
 productRouter.get('/getaproduct/:id',ProductCtrl.getaproduct)
 productRouter.get('/getallproducts',ProductCtrl.getallProducts)
-productRouter.patch('/updateaProduct/:id',loginCheck, hasPermission('admin'), upload.none(),bodyValidator(ProductUpdateDTO),ProductCtrl.UpdateaProduct)
+productRouter.patch('/updateaproduct/:id',loginCheck, hasPermission('admin'), upload.none(),bodyValidator(ProductUpdateDTO),ProductCtrl.UpdateaProduct)
 productRouter.delete('/deleteaproduct/:id',loginCheck, hasPermission('admin'),ProductCtrl.DeleteaProduct)
 
 module.exports = productRouter

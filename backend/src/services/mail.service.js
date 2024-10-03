@@ -40,7 +40,6 @@ class MailService {
                 msgOpts ['attachments'] = attachments;
             }
     const response = await this.#transport.sendMail(msgOpts);
-    console.log("mail gaisakyo")
     return response;
 
         }catch(exception){

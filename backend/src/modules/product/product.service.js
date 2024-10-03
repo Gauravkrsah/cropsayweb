@@ -30,7 +30,26 @@ AllProductsFiltering = async(query)=>{
         excludeFields.forEach((el) => delete queryObj[el])
         let queryStr = JSON.stringify(queryObj)
         queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g,(match) => `$${match}`)
-        const allProducts = await ProductModel.find(JSON.parse(queryStr))
+        let allProducts =  ProductModel.find(JSON.parse(queryStr))
+
+        // fields
+        if(query.fields){
+            const fields = query.fields.split(',').join(' ')
+            allProducts = allProducts.select(fields)
+        }
+
+        //Pagination
+        const page = query.page
+        const limit = query.limit
+        const skip = (page -1) * limit
+
+        if(query.page){
+            allProducts = allProducts.skip(skip).limit(limit)
+            const ProductCount = await ProductModel.countDocuments()
+            if(skip >= ProductCount){
+                throw ({message:"This page doesnot exist"})
+            }
+        }
         return allProducts
     }catch(exception){
         throw(exception)
