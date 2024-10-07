@@ -17,7 +17,9 @@ const userCreateDTO = Joi.object({
     image :Joi.string().optional(),
     role : Joi.string().messages({
         "string.pattern.base" : "Role should be admin or customer"
-    })
+    }),
+    cart: Joi.array().items(Joi.string()).optional()
+
 })
 
 PasswordUpdateDTO = Joi.object({

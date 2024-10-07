@@ -7,7 +7,6 @@ class ProductService{
             data.slug = slugify(data.title)
         }
         const newProduct = await ProductModel.create(data)
-
         return newProduct
     }catch(exception){
         throw(exception)

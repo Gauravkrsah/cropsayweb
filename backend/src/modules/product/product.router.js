@@ -12,5 +12,6 @@ productRouter.get('/getaproduct/:id',ProductCtrl.getaproduct)
 productRouter.get('/getallproducts',ProductCtrl.getallProducts)
 productRouter.patch('/updateaproduct/:id',loginCheck, hasPermission('admin'), upload.none(),bodyValidator(ProductUpdateDTO),ProductCtrl.UpdateaProduct)
 productRouter.delete('/deleteaproduct/:id',loginCheck, hasPermission('admin'),ProductCtrl.DeleteaProduct)
+productRouter.put('/addtocart',loginCheck,upload.none(),ProductCtrl.AddToCart)
 
 module.exports = productRouter

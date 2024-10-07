@@ -50,17 +50,13 @@ class UserController {
   };
 
   userupdatebyId = async (req, res, next) => {
+  
     try {
-      const { id } = req.params;
-      idvalidate(id);
-      if (!req.body.name) {
-        throw { status: 400, message: "request body is missing" };
-      }
+      const id = req.authUser;
       const response = await userSvc.updateUser(req.body, id);
-
       res.json({
         result: response,
-        message: `user update of ${id}`,
+        message: `user updated`,
         meta: null,
       });
     } catch (exception) {
@@ -70,8 +66,7 @@ class UserController {
 
   UserdeleteById = async (req, res, next) => {
     try {
-      const { id } = req.params;
-      idvalidate(id);
+      const id = req.authUser;
       const response = await UserModel.findByIdAndDelete(id);
       if (!response) {
         throw { status: 404, message: "User not found" };
