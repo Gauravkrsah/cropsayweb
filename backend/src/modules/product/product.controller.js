@@ -5,9 +5,8 @@ const productSvc = require("./product.service")
 
 class ProductController {
 CreateProduct = async(req, res, next) =>{
-    const data = req.body
     try{
-        const newProduct = await productSvc.createProduct(data);
+        const newProduct = await productSvc.createProduct(req);
         res.json({
             result: newProduct,
             message: "Product Added",

@@ -4,6 +4,7 @@ const mailSvc = require("../../services/mail.service");
 const UserModel = require("./user.model");
 const randomStringGenerator = require("../../utilities/random-string");
 const { deleteFile } = require("../../middlewares/uploader.middleware");
+const uploadImage = require("../../config/cloudinary.config");
 
 
 
@@ -15,18 +16,23 @@ generateUserActivationToken = (data) =>{
     return data; 
 }
 
-    transformUserCreate =  (req) =>{
+    transformUserCreate = async (req) =>{
         let data = req.body;
-
-            if(req.file){
-                data.image = req.file.filename
-            }
+        let files = req.files
             data.password = bcrypt.hashSync(data.password, 10)
            const tokenData = this.generateUserActivationToken(data)
            data.activationToken = tokenData.activationToken;
            data.status = "inactive"
-        //    data.image = await uploadImage("./public/uploads/user/"+req.file.filename)
-            return data;
+           const imageurls = []
+           if (Array.isArray(files)) {
+               await Promise.all(files.map(async(file)=>{
+                const images = await uploadImage("./public/uploads/user/"+ file.filename)
+                imageurls.push(images)
+                 deleteFile("./public/uploads/user/"+ file.filename)    
+                   }))
+               }
+               data.image = imageurls
+                           return data;
     }
 
     sendActivationEmail =  async ({name, email, token, sub = "Activate your account"}) =>{

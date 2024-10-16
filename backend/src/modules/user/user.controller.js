@@ -7,7 +7,7 @@ const multer = require("multer");
 class UserController {
   UserCreate = async (req, res, next) => {
     try {
-      const data = userSvc.transformUserCreate(req);
+      const data = await userSvc.transformUserCreate(req);
       const user = await userSvc.registerUser(data);
       console.log("Registered Data:", user);
       await userSvc.sendActivationEmail({

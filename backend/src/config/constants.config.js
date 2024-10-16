@@ -14,7 +14,6 @@ const ProductStatus = {
 
 const fileFilterType = {
   IMAGE:"image",
-  AUDIO:"audio",
   DOC:"doc",
   VIDEO:"video"
 }

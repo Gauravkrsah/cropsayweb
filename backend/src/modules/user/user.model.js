@@ -26,9 +26,6 @@ const AddressSchema = new mongoose.Schema({
          type: String,
          required:true       
      },
-     image:{
-        type: String,
-    },
      role:{
          type : String,
          enum: [...Object.values(UserRoles)],
@@ -45,7 +42,7 @@ const AddressSchema = new mongoose.Schema({
      address: {AddressSchema},
      forgetToken:String,
      forgetFor: Date,
-     image: String,
+     image: Array,
      cart: [{type: mongoose.Schema.ObjectId, ref: "Product"}],
      isBlocked: {
         type: Boolean,

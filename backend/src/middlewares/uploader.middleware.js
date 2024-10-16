@@ -1,9 +1,9 @@
 const multer = require ("multer");
 const fs = require ("fs");
+const sharp = require("sharp")
 const { fileFilterType } = require("../config/constants.config");
 const randomStringGenerator = require("../utilities/random-string");
 
-const upload = multer();
 const myStorage = multer.diskStorage({
     destination: (req, file, cb) => {
         const path = "./public/uploads/"+ req.uploadPath
@@ -14,35 +14,28 @@ const myStorage = multer.diskStorage({
     },
     filename : (req, file, cb) =>{
         const ext = file.originalname.split(".").pop()
-        const filename = randomStringGenerator(30)+"."+ ext;
+        const filename = randomStringGenerator(20)+"."+ ext;
         cb(null,filename);
     }   
 })
 
-const uploadfile = (filetype = fileFilterType.IMAGE) =>{
+const fileFilter = (req,file,cb) =>{
     let allowed  = ['jpg','svg','jpeg','webp','png','gif','bmp'];
-    if (filetype === fileFilterType.DOC){
-        allowed = ['doc','docx','xls','txt'];
-    }else if(filetype === fileFilterType.VIDEO){
-        allowed = ['mp4','mov','wav','mkv'];
-    }
-
+    const ext = file.originalname.split(".").pop();
+    if(allowed.includes(ext.toLowerCase())){
+        cb(null,true)
+    }else{
+    cb({code: 400, message:"file format not supported"})
+}
+}
+const uploadfile = (filetype = fileFilterType.IMAGE) =>{
    return multer({
         storage: myStorage,
-        limits : {
-            fileSize :3000000 
-        },
-        fileFilter :(req, file, cb) => {
-            const ext = file.originalname.split(".").pop();
-            if(allowed.includes(ext.toLowerCase())){
-                cb(null,true)
-            }else{
-            cb({code: 400, message:"file format not supported"})
-        }
-    }
+        limits : {fileSize :3000000 },
+        fileFilter :fileFilter    
     })
 }
-    
+ 
 const setPath  = (path) =>{
     return (req, res, next) =>{
         req.uploadPath = path
@@ -55,10 +48,8 @@ const deleteFile = (path) => {
         fs.unlinkSync(path)
     }
 }
-
 module.exports = {
     uploadfile,
     setPath,
-    deleteFile,
-    upload
+    deleteFile
 }

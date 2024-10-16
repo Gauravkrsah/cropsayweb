@@ -1,11 +1,24 @@
+const uploadImage = require("../../config/cloudinary.config")
+const { deleteFile } = require("../../middlewares/uploader.middleware")
 const ProductModel = require("./product.model")
 const slugify = require('slugify')
 class ProductService{
-     createProduct  = async (data) => {
+     createProduct  = async (req) => {
     try{
+        const data = req.body
+        const files = req.files
         if(data.title){
             data.slug = slugify(data.title)
         }
+        const urls = []
+        if (Array.isArray(files)) {
+            await Promise.all(files.map(async(file)=>{
+             const images = await uploadImage("./public/uploads/product/"+ file.filename)
+             urls.push(images)
+              deleteFile("./public/uploads/product/"+ file.filename)    
+                }))
+            }
+            data.image = urls
         const newProduct = await ProductModel.create(data)
         return newProduct
     }catch(exception){

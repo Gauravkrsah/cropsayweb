@@ -15,7 +15,7 @@ const bodyValidator = (schema) =>{
         catch(exception){
             console.log(exception)
             let detail = {};
-            if (req.file){
+            if (req.files){
                 deleteFile("./"+req.file.path)
             }
             exception.details.map((error) =>{
