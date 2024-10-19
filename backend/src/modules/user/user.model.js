@@ -43,7 +43,7 @@ const AddressSchema = new mongoose.Schema({
      forgetToken:String,
      forgetFor: Date,
      image: Array,
-     cart: [{type: mongoose.Schema.ObjectId, ref: "Product"}],
+     wishlist: [{type: mongoose.Schema.ObjectId, ref: "Product"}],
      isBlocked: {
         type: Boolean,
         default: false

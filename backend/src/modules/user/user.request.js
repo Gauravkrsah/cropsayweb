@@ -18,7 +18,7 @@ const userCreateDTO = Joi.object({
     role : Joi.string().messages({
         "string.pattern.base" : "Role should be admin or customer"
     }),
-    cart: Joi.array().items(Joi.string()).optional()
+    wishlist: Joi.array().items(Joi.string()).optional()
 
 })
 

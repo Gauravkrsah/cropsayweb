@@ -50,7 +50,6 @@ class UserController {
   };
 
   userupdatebyId = async (req, res, next) => {
-  
     try {
       const id = req.authUser;
       const response = await userSvc.updateUser(req.body, id);
@@ -160,7 +159,49 @@ class UserController {
     }catch(exception){
         next(exception)
     }
-    
+  }
+
+  AddToWishlist = async(req,res,next) => {
+    const id = req.authUser
+    const {prod_id} = req.body
+    console.log(prod_id)
+    try{
+        const user = await UserModel.findById(id)
+          console.log(user.wishlist)
+        const alreadyadded = user.wishlist.find((id) => id.toString() === prod_id)
+        if(alreadyadded){
+            throw({message:"Product already added to your wishlist"})
+        }
+            let userwishlist = await UserModel.findByIdAndUpdate(id,
+                {
+                    $push: {wishlist:prod_id}
+                },
+                {new:true}
+            ).populate('wishlist')
+        
+        res.json({
+            result:userwishlist.wishlist,
+            message: "Product added to your wishlist",
+            meta: null
+        })
+    }catch(exception){
+        next(exception)
+    }
+ }
+
+  GetWishlist = async(req,res,next) => {
+    try{
+        const id = req.authUser
+        const userwishlist = await UserModel.findById(id).populate("wishlist")
+        const wishlistitems = userwishlist.wishlist
+        res.json({
+          result: wishlistitems,
+          message: "wishlist items shown",
+          meta: null
+        })
+    }catch(exception){
+      next(exception)
+    }
   }
 }
 

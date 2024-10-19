@@ -18,5 +18,7 @@ userRouter.patch("/userupdate", uploadfile().none(), loginCheck, UserCtrl.userup
 userRouter.put("/blockUser/:id",loginCheck,hasPermission('admin'),UserCtrl.BlocKUser)
 userRouter.put("/unblockUser/:id",loginCheck,hasPermission('admin'),UserCtrl.UnblocKUser)
 userRouter.delete("/userdelete",loginCheck,UserCtrl.UserdeleteById)
+userRouter.put('/addtowishlist',loginCheck,uploadfile().none(), UserCtrl.AddToWishlist)
+userRouter.get("/getwishlist",loginCheck,UserCtrl.GetWishlist)
 
 module.exports = userRouter;

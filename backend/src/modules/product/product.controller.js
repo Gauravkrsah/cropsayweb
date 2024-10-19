@@ -76,33 +76,7 @@ CreateProduct = async(req, res, next) =>{
     }
  }
 
- AddToCart = async(req,res,next) => {
-    const id = req.authUser
-    const {prod_id} = req.body
-    console.log(prod_id)
-    try{
-        const user = await UserModel.findById(id)
-          console.log(user.cart)
-        const alreadyadded = user.cart.find((id) => id.toString() === prod_id)
-        if(alreadyadded){
-            throw({message:"Product already added to your cart"})
-        }
-            let usercart = await UserModel.findByIdAndUpdate(id,
-                {
-                    $push: {cart:prod_id}
-                },
-                {new:true}
-            ).populate('cart')
-        
-        res.json({
-            result:usercart.cart,
-            message: "Product added to your cart",
-            meta: null
-        })
-    }catch(exception){
-        next(exception)
-    }
- }
+ 
 }
 
 const ProductCtrl = new ProductController()
