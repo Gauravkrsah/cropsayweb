@@ -3,6 +3,9 @@ const UserModel = require("./user.model");
 const bcrypt = require("bcryptjs")
 const { userSvc } = require("./user.service");
 const multer = require("multer");
+const cartModel = require("../cart/cart.model");
+const ProductModel = require("../product/product.model");
+const { object } = require("joi");
 
 class UserController {
   UserCreate = async (req, res, next) => {
@@ -164,7 +167,7 @@ class UserController {
   AddToWishlist = async(req,res,next) => {
     const id = req.authUser
     const {prod_id} = req.body
-    console.log(prod_id)
+    idvalidate(id)
     try{
         const user = await UserModel.findById(id)
           console.log(user.wishlist)
@@ -201,6 +204,88 @@ class UserController {
         })
     }catch(exception){
       next(exception)
+    }
+  }
+
+  AddtoCart = async(req,res, next)=> {
+    try{
+    const id = req.authUser
+      const {cart}= req.body
+      let products = []
+      const user = await UserModel.findById(id)
+      let usercart = await cartModel.findOne({orderBy : user._id})
+      for (let i=0; i< cart.length;i++) {
+        let object = {}
+        object.product = cart[i].id
+        object.count = cart[i].count || 1
+        let getPrice = await ProductModel.findById(cart[i].id).select("price").exec()
+        object.price = getPrice.price
+        products.push(object)
+      }
+      let cartTotal = 0;
+      for(let i=0; i< products.length;i++){
+        cartTotal = cartTotal + products[i].price*products[i].count
+      }
+      let existingCart = await cartModel.findOne({ orderBy: user._id });
+      if (existingCart) {
+        products.forEach((newProduct) => {
+          let existingProductIndex = existingCart.products.findIndex(p => p.product.toString() === newProduct.product.toString());
+          console.log (existingProductIndex )
+          if (existingProductIndex == -1) {
+            existingCart.products.push(newProduct);
+          }
+        });
+        existingCart.cartTotal = existingCart.products.reduce((total, item) => {
+          return total + item.price * item.count;
+        }, 0);
+        await existingCart.save();
+        return res.json({
+          message: 'product added to cart',
+          cart: existingCart
+        });
+      }
+      console.log(products, cartTotal)
+      const cartitem = await new cartModel({products,cartTotal,orderBy:user?._id}).save()
+      res.json({
+        result: cartitem,
+        message: "Product added to cart",
+        meta:null
+      })
+    }catch(exception){
+      next(exception)
+    }
+  }
+
+  GetUserCart = async(req,res,next) => {
+    try{
+      const id = req.authUser
+      const cart = await cartModel.findOne({orderBy: id}).populate("products.product")
+      res.json({
+        result:cart
+      })
+    }catch(exception){
+      next(exception)
+    }
+  }
+
+  EmptyCart = async(req,res,next)=>{
+    try{
+      const id = req.authUser
+      const user = await UserModel.findById(id)
+      const cart = await cartModel.findOneAndDelete({orderBy: user._id})
+      res.json({
+        result:cart
+      })
+    }catch(exception){
+      next(exception)
+    }
+  }
+
+  Order = async(req,res,next)=>{
+    try{
+      
+    }catch(exception){
+
     }
   }
 }

@@ -20,5 +20,9 @@ userRouter.put("/unblockUser/:id",loginCheck,hasPermission('admin'),UserCtrl.Unb
 userRouter.delete("/userdelete",loginCheck,UserCtrl.UserdeleteById)
 userRouter.put('/addtowishlist',loginCheck,uploadfile().none(), UserCtrl.AddToWishlist)
 userRouter.get("/getwishlist",loginCheck,UserCtrl.GetWishlist)
+userRouter.post("/addtocart",loginCheck, UserCtrl.AddtoCart)
+userRouter.get("/getusercart",loginCheck, UserCtrl.GetUserCart)
+userRouter.delete("/emptycart",loginCheck, UserCtrl.EmptyCart)
+
 
 module.exports = userRouter;
